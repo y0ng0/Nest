@@ -41,6 +41,7 @@ export class FileUploadController {
     return {
       originalname: file.originalname,
       filename: file.filename,
+      data: file.filename,
       message: 'File uploaded successfully!',
       code: 0,
     };
