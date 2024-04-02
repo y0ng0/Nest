@@ -1,11 +1,10 @@
-// file-upload.controller.ts
-
 import {
   Controller,
   Post,
   UseInterceptors,
   UploadedFile,
   BadRequestException,
+  HttpCode,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -37,10 +36,13 @@ export class FileUploadController {
       },
     }),
   )
+  @HttpCode(200) // 设置状态码为200
   async uploadFile(@UploadedFile() file) {
     return {
       originalname: file.originalname,
       filename: file.filename,
+      message: 'File uploaded successfully!',
+      code: 0,
     };
   }
 }
